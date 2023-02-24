@@ -134,3 +134,7 @@ export type FindPostsVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FindPosts = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, body: string, createdAt: string }> };
+
+export type FindUserBalanceQuery = { __typename?: 'Query', userBalance?: { __typename?: 'userBalance', id: number, name: string, amount: number } }
+
+export type FindUserBalanceQueryVariables = Exact<{id: Scalars['Int']}>
