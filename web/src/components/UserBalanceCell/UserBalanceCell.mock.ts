@@ -2,5 +2,7 @@
 export const standard = (/* vars, { ctx, req } */) => ({
   userBalance: {
     id: 42,
+    name: 'bitcoin',
+    amount: 53,
   },
 })
