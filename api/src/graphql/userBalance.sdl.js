@@ -8,4 +8,12 @@ export const schema = gql`
   type Query {
     userBalance(id: Int!): userBalance @requireAuth
   }
+  input CreateUserBalance {
+    title: String!
+    body: String!
+  }
+
+  type Mutation {
+    createPost(input: CreatePostInput!): Post! @requireAuth
+  }
 `
