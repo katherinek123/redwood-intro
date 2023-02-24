@@ -1,6 +1,6 @@
 import type { FindUserBalanceQuery, FindUserBalanceQueryVariables } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-
+import {Loader} from '@mantine/core'
 export const QUERY = gql`
   query FindUserBalanceQuery($id: Int!) {
     userBalance: userBalance(id: $id) {
@@ -11,7 +11,11 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading...</div>
+export const Loading = () => (
+  <div>
+    <Loader size="xl" />
+  </div>
+)
 
 export const Empty = () => <div>Empty</div>
 
