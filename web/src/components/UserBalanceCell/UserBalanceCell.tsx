@@ -45,5 +45,10 @@ export const Failure = ({
 export const Success = ({
   userBalance,
 }: CellSuccessProps<FindUserBalanceQuery, FindUserBalanceQueryVariables>) => {
-  return <div>{JSON.stringify(userBalance)}</div>
+  return (
+    <div>
+      name : {JSON.stringify(userBalance.name)}
+      amount: {JSON.stringify(userBalance.amount)}
+    </div>
+  )
 }
