@@ -17,3 +17,9 @@ model Post {
   body      String
   createdAt DateTime @default(now())
 }
+
+model UserBalance {
+  id       Int @id @default(autoincrement())
+  name     String
+  amount   Int
+}
