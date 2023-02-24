@@ -54,7 +54,11 @@ export type Post = {
   id: Scalars['Int'];
   title: Scalars['String'];
 };
-
+export type UserBalance = { 
+  __typename?: 'userBalance';
+  name: Scalars['String'];
+  amount: Scalars['Int'];
+}
 /** About the Redwood queries. */
 export type Query = {
   __typename?: 'Query';
