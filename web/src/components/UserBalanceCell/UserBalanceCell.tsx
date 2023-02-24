@@ -1,4 +1,6 @@
-import { Loader } from '@mantine/core'
+import { useState } from 'react'
+
+import { Loader, Modal } from '@mantine/core'
 import type { FindUserBalanceQuery, FindUserBalanceQueryVariables } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
@@ -23,9 +25,22 @@ export const Empty = () => <div>Empty</div>
 
 export const Failure = ({
   error,
-}: CellFailureProps<FindUserBalanceQueryVariables>) => (
-  <div style={{ color: 'red' }}>Error: {error?.message}</div>
-)
+}: CellFailureProps<FindUserBalanceQueryVariables>) => {
+  const [opened, setOpened] = useState(false)
+  return (
+    <div>
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(!opened)}
+        transition="fade"
+        transitionDuration={600}
+        closeButtonLabel="Close User Balance Error Notification"
+      >
+        Error: {error?.message}
+      </Modal>
+    </div>
+  )
+}
 
 export const Success = ({
   userBalance,
