@@ -5,6 +5,8 @@ export const QUERY = gql`
   query FindUserBalanceQuery($id: Int!) {
     userBalance: userBalance(id: $id) {
       id
+      name
+      amount
     }
   }
 `
