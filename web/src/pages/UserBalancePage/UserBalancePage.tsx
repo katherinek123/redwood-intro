@@ -1,17 +1,18 @@
-import { Form, Submit, FieldError, Label, TextField } from '@redwoodjs/forms'
+import { Form, Submit, FieldError, Label, TextField, FormError } from '@redwoodjs/forms'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 
+import UserBalanceCell from 'src/components/UserBalanceCell/UserBalanceCell'
 const CREATE_USER_BALANCE = gql`
   mutation CreateUserBalanceMutation($input: CreateUserBalance!) {
     createUserBalance(input: $input) {
-      name
+      id
     }
   }
 `
 
 const UserBalancePage = () => {
-  const [create] = useMutation(CREATE_USER_BALANCE)
+  const [create, {loading, error}] = useMutation(CREATE_USER_BALANCE)
   const onSubmit = (data) => {
     console.log(data)
     create({
@@ -25,18 +26,16 @@ const UserBalancePage = () => {
       <MetaTags title="UserBalance" description="UserBalance page" />
 
       <h1>UserBalancePage</h1>
-      <p>
-        THIS IS THE USER BALANCE
-      </p>
+      <p>THIS IS THE USER BALANCE</p>
+      <UserBalanceCell id={1} />
       <Form onSubmit={onSubmit}>
-        <Label name="token" errorClassName="error">
+        <FormError error={error} />
+        <Label name="name" errorClassName="error">
           Token Name
         </Label>
-        <TextField name='token' validation={{
-          required: true
-        }} />
-        <FieldError name='token' className='error'></FieldError>
-        <Submit>Find My Balance</Submit>
+        <TextField name="name" validation={{ required: true }} />
+        <FieldError name="name" className="error"></FieldError>
+        <Submit disabled={loading}>Find My Balance</Submit>
       </Form>
       <p>
         My default route is named <code>userBalance</code>, link to me with `
