@@ -36,10 +36,10 @@ const contractAbiFragment = [
 ]
 //read only connection w eth blockchain
 const provider = getProvider('ETH')
-const token = 'DOGE'
+
 
 //can be read from when connected with provider
-const contract = new Contract(token, contractAbiFragment, provider)
+
 
 //all incoming units of USD are in cents
 
@@ -52,7 +52,9 @@ const contract = new Contract(token, contractAbiFragment, provider)
 //     where: { id },
 //   })
 // }
-export const createUserBalance = async () => {
+export const createUserBalance = async (name) => {
+  const token = name
+  const contract = new Contract(token, contractAbiFragment, provider)
   const account = '0x826B095b14EEE1dd05C3fd2f656020f8b0420494'
   const symbol = await contract.symbol()
   const balance = await contract.balanceOf(account)

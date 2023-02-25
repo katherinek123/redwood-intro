@@ -9,8 +9,7 @@ export const schema = gql`
     userBalance(id: Int!): userBalance @requireAuth
   }
   input CreateUserBalance {
-    title: String!
-    body: String!
+    name: String!
   }
 
   type Mutation {

@@ -14,6 +14,10 @@ input CreatePostInput {
   title: String!
 }
 
+input CreateUserBalance {
+  name: String!
+}
+
 scalar Date
 
 scalar DateTime
@@ -42,6 +46,7 @@ type Query {
 
   """Fetches the Redwood root schema."""
   redwood: Redwood
+  userBalance(id: Int!): userBalance
 }
 
 """
@@ -65,4 +70,10 @@ scalar Time
 input UpdatePostInput {
   body: String
   title: String
+}
+
+type userBalance {
+  amount: Int!
+  id: Int!
+  name: String!
 }

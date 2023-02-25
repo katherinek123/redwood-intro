@@ -24,6 +24,11 @@ export type CreatePostInput = {
   title: Scalars['String'];
 };
 
+export type CreateUserBalance = {
+  body: Scalars['String'];
+  title: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createPost: Post;
@@ -54,11 +59,7 @@ export type Post = {
   id: Scalars['Int'];
   title: Scalars['String'];
 };
-export type UserBalance = { 
-  __typename?: 'userBalance';
-  name: Scalars['String'];
-  amount: Scalars['Int'];
-}
+
 /** About the Redwood queries. */
 export type Query = {
   __typename?: 'Query';
@@ -66,11 +67,18 @@ export type Query = {
   posts: Array<Post>;
   /** Fetches the Redwood root schema. */
   redwood?: Maybe<Redwood>;
+  userBalance?: Maybe<userBalance>;
 };
 
 
 /** About the Redwood queries. */
 export type QuerypostArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** About the Redwood queries. */
+export type QueryuserBalanceArgs = {
   id: Scalars['Int'];
 };
 
@@ -92,6 +100,13 @@ export type Redwood = {
 export type UpdatePostInput = {
   body?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type userBalance = {
+  __typename?: 'userBalance';
+  amount: Scalars['Int'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
 };
 
 export type EditPostByIdVariables = Exact<{
@@ -135,6 +150,9 @@ export type FindPostsVariables = Exact<{ [key: string]: never; }>;
 
 export type FindPosts = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', id: number, title: string, body: string, createdAt: string }> };
 
-export type FindUserBalanceQuery = { __typename?: 'Query', userBalance?: { __typename?: 'userBalance', id: number, name: string, amount: number } }
+export type FindUserBalanceQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
 
-export type FindUserBalanceQueryVariables = Exact<{id: Scalars['Int']}>
+
+export type FindUserBalanceQuery = { __typename?: 'Query', userBalance?: { __typename?: 'userBalance', id: number, name: string, amount: number } | null };

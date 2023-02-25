@@ -42,6 +42,10 @@ export type CreatePostInput = {
   title: Scalars['String'];
 };
 
+export type CreateUserBalance = {
+  name: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createPost: Post;
@@ -80,11 +84,18 @@ export type Query = {
   posts: Array<Post>;
   /** Fetches the Redwood root schema. */
   redwood?: Maybe<Redwood>;
+  userBalance?: Maybe<userBalance>;
 };
 
 
 /** About the Redwood queries. */
 export type QuerypostArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** About the Redwood queries. */
+export type QueryuserBalanceArgs = {
   id: Scalars['Int'];
 };
 
@@ -106,6 +117,13 @@ export type Redwood = {
 export type UpdatePostInput = {
   body?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
+};
+
+export type userBalance = {
+  __typename?: 'userBalance';
+  amount: Scalars['Int'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
 };
 
 type MaybeOrArrayOfMaybe<T> = T | Maybe<T> | Maybe<T>[];
@@ -171,6 +189,7 @@ export type ResolversTypes = {
   BigInt: ResolverTypeWrapper<Scalars['BigInt']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   CreatePostInput: CreatePostInput;
+  CreateUserBalance: CreateUserBalance;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
@@ -183,6 +202,7 @@ export type ResolversTypes = {
   String: ResolverTypeWrapper<Scalars['String']>;
   Time: ResolverTypeWrapper<Scalars['Time']>;
   UpdatePostInput: UpdatePostInput;
+  userBalance: ResolverTypeWrapper<userBalance>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -190,6 +210,7 @@ export type ResolversParentTypes = {
   BigInt: Scalars['BigInt'];
   Boolean: Scalars['Boolean'];
   CreatePostInput: CreatePostInput;
+  CreateUserBalance: CreateUserBalance;
   Date: Scalars['Date'];
   DateTime: Scalars['DateTime'];
   Int: Scalars['Int'];
@@ -202,6 +223,7 @@ export type ResolversParentTypes = {
   String: Scalars['String'];
   Time: Scalars['Time'];
   UpdatePostInput: UpdatePostInput;
+  userBalance: userBalance;
 };
 
 export type requireAuthDirectiveArgs = {
@@ -266,12 +288,14 @@ export type QueryResolvers<ContextType = RedwoodGraphQLContext, ParentType exten
   post: Resolver<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<QuerypostArgs, 'id'>>;
   posts: OptArgsResolverFn<Array<ResolversTypes['Post']>, ParentType, ContextType>;
   redwood: OptArgsResolverFn<Maybe<ResolversTypes['Redwood']>, ParentType, ContextType>;
+  userBalance: Resolver<Maybe<ResolversTypes['userBalance']>, ParentType, ContextType, RequireFields<QueryuserBalanceArgs, 'id'>>;
 };
 
 export type QueryRelationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   post?: RequiredResolverFn<Maybe<ResolversTypes['Post']>, ParentType, ContextType, RequireFields<QuerypostArgs, 'id'>>;
   posts?: RequiredResolverFn<Array<ResolversTypes['Post']>, ParentType, ContextType>;
   redwood?: RequiredResolverFn<Maybe<ResolversTypes['Redwood']>, ParentType, ContextType>;
+  userBalance?: RequiredResolverFn<Maybe<ResolversTypes['userBalance']>, ParentType, ContextType, RequireFields<QueryuserBalanceArgs, 'id'>>;
 };
 
 export type RedwoodResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Redwood'] = ResolversParentTypes['Redwood']> = {
@@ -292,6 +316,20 @@ export interface TimeScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes
   name: 'Time';
 }
 
+export type userBalanceResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['userBalance'] = ResolversParentTypes['userBalance']> = {
+  amount: OptArgsResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  id: OptArgsResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  name: OptArgsResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type userBalanceRelationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['userBalance'] = ResolversParentTypes['userBalance']> = {
+  amount?: RequiredResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  id?: RequiredResolverFn<ResolversTypes['Int'], ParentType, ContextType>;
+  name?: RequiredResolverFn<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type Resolvers<ContextType = RedwoodGraphQLContext> = {
   BigInt: GraphQLScalarType;
   Date: GraphQLScalarType;
@@ -303,6 +341,7 @@ export type Resolvers<ContextType = RedwoodGraphQLContext> = {
   Query: QueryResolvers<ContextType>;
   Redwood: RedwoodResolvers<ContextType>;
   Time: GraphQLScalarType;
+  userBalance: userBalanceResolvers<ContextType>;
 };
 
 export type DirectiveResolvers<ContextType = RedwoodGraphQLContext> = {
