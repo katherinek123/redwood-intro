@@ -154,5 +154,4 @@ export type FindUserBalanceQueryVariables = Exact<{
   id: Scalars['Int'];
 }>;
 
-
 export type FindUserBalanceQuery = { __typename?: 'Query', userBalance?: { __typename?: 'userBalance', id: number, name: string, amount: number } | null };

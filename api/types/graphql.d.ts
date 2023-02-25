@@ -51,7 +51,6 @@ export type Mutation = {
   createPost: Post;
   deletePost: Post;
   updatePost: Post;
-  createUserBalance: userBalance;
 };
 
 
@@ -59,9 +58,6 @@ export type MutationcreatePostArgs = {
   input: CreatePostInput;
 };
 
-export type MutationcreateUserBalanceArgs = {
-  input: CreateUserBalance
-}
 
 export type MutationdeletePostArgs = {
   id: Scalars['Int'];

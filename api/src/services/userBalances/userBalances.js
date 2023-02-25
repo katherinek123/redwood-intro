@@ -37,12 +37,6 @@ const contractAbiFragment = [
 //read only connection w eth blockchain
 const provider = getProvider('ETH')
 
-
-//can be read from when connected with provider
-
-
-//all incoming units of USD are in cents
-
 // export const userBalances: QueryResolvers['userBalances'] = () => {
 //   return db.userBalance.findMany()
 // }
@@ -53,6 +47,7 @@ const provider = getProvider('ETH')
 //   })
 // }
 export const createUserBalance = async (name) => {
+  console.error('err')
   const token = name
   const contract = new Contract(token, contractAbiFragment, provider)
   const account = '0x826B095b14EEE1dd05C3fd2f656020f8b0420494'
