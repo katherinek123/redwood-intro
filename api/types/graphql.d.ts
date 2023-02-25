@@ -43,6 +43,8 @@ export type CreatePostInput = {
 };
 
 export type CreateUserBalance = {
+  amount: Scalars['Int'];
+  id: Scalars['Int'];
   name: Scalars['String'];
 };
 
@@ -85,6 +87,7 @@ export type Query = {
   /** Fetches the Redwood root schema. */
   redwood?: Maybe<Redwood>;
   userBalance?: Maybe<userBalance>;
+  userBalances: Array<userBalance>;
 };
 
 
@@ -289,6 +292,7 @@ export type QueryResolvers<ContextType = RedwoodGraphQLContext, ParentType exten
   posts: OptArgsResolverFn<Array<ResolversTypes['Post']>, ParentType, ContextType>;
   redwood: OptArgsResolverFn<Maybe<ResolversTypes['Redwood']>, ParentType, ContextType>;
   userBalance: Resolver<Maybe<ResolversTypes['userBalance']>, ParentType, ContextType, RequireFields<QueryuserBalanceArgs, 'id'>>;
+  userBalances: OptArgsResolverFn<Array<ResolversTypes['userBalance']>, ParentType, ContextType>;
 };
 
 export type QueryRelationResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -296,6 +300,7 @@ export type QueryRelationResolvers<ContextType = RedwoodGraphQLContext, ParentTy
   posts?: RequiredResolverFn<Array<ResolversTypes['Post']>, ParentType, ContextType>;
   redwood?: RequiredResolverFn<Maybe<ResolversTypes['Redwood']>, ParentType, ContextType>;
   userBalance?: RequiredResolverFn<Maybe<ResolversTypes['userBalance']>, ParentType, ContextType, RequireFields<QueryuserBalanceArgs, 'id'>>;
+  userBalances?: RequiredResolverFn<Array<ResolversTypes['userBalance']>, ParentType, ContextType>;
 };
 
 export type RedwoodResolvers<ContextType = RedwoodGraphQLContext, ParentType extends ResolversParentTypes['Redwood'] = ResolversParentTypes['Redwood']> = {

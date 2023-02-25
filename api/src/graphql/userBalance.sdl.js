@@ -6,10 +6,13 @@ export const schema = gql`
   }
 
   type Query {
+    userBalances: [userBalance!]! @requireAuth
     userBalance(id: Int!): userBalance @requireAuth
   }
   input CreateUserBalance {
+    id: Int!
     name: String!
+    amount: Int!
   }
 
   type Mutation {

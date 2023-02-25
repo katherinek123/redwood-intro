@@ -15,6 +15,8 @@ input CreatePostInput {
 }
 
 input CreateUserBalance {
+  amount: Int!
+  id: Int!
   name: String!
 }
 
@@ -47,6 +49,7 @@ type Query {
   """Fetches the Redwood root schema."""
   redwood: Redwood
   userBalance(id: Int!): userBalance
+  userBalances: [userBalance!]!
 }
 
 """
