@@ -1,6 +1,7 @@
 import { Form, Submit, FieldError, Label, TextField, TextAreaField,} from '@redwoodjs/forms'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags, useMutation } from '@redwoodjs/web'
+
 const CREATE_USER_BALANCE = gql`
   mutation CreateUserBalanceMutation($input: CreateUserBalance!) {
     createUserBalance(input: $input) {
@@ -13,6 +14,11 @@ const UserBalancePage = () => {
   const [create] = useMutation(CREATE_USER_BALANCE)
   const onSubmit = (data) => {
     console.log(data)
+    create({
+      variables: {
+        input: data,
+      },
+    })
   }
   return (
     <>
