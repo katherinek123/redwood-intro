@@ -25,8 +25,8 @@ export type CreatePostInput = {
 };
 
 export type CreateUserBalance = {
-  body: Scalars['String'];
-  title: Scalars['String'];
+  name: Scalars['String'];
+  amount: Scalars['Int'];
 };
 
 export type Mutation = {
