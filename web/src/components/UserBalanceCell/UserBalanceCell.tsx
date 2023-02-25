@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import { Loader, Alert } from '@mantine/core'
 import type { FindUserBalanceQuery, FindUserBalanceQueryVariables } from 'types/graphql'
 
