@@ -56,11 +56,9 @@ export const createUserBalance = async () => {
   const account = '0x826B095b14EEE1dd05C3fd2f656020f8b0420494'
   const symbol = await contract.symbol()
   const balance = await contract.balanceOf(account)
+  const input = { name: symbol, amount: balance }
   return db.userBalance.create({
-    data: {
-      name: symbol,
-      amount: balance,
-    },
+    data: input,
   })
 }
 
