@@ -51,6 +51,7 @@ export type Mutation = {
   createPost: Post;
   deletePost: Post;
   updatePost: Post;
+  createUserBalance: userBalance;
 };
 
 
